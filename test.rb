@@ -29,7 +29,9 @@ def wget_download(url)
   %x{wget #{wget_opts} #{url}}
 end
 
-ARGV << '-h' if ARGV.empty?
+if ARGV.empty? or ARGV.first !~ /^-/
+  ARGV << '-h'
+end
 
 def put_to_artifactory
   # Routine to put content to Artifactory
